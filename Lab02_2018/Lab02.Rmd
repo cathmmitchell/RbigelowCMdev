@@ -5,7 +5,7 @@ output: html_notebook
 
 This lab focuses on statstics and data visualization, with the aim of using CTD data to look for relationships in oceanographic data. The tools you are introduced to here can be used to graph and analyze data in your labs, your independent research projects and the cruise data gathered throughout the semester. Be sure to save any scripts that you develop so you can continue to use them.
 
-# Importing Data
+# 1. Importing Data
 
 *This section will be a copy from Lab 1*
 
@@ -13,16 +13,16 @@ This lab focuses on statstics and data visualization, with the aim of using CTD 
 
 ```
 
-# Scatter plots, correlations and linear regressions
+# 2. Scatter plots, correlations and linear regressions
 
-### Question: How is one variable related to another?
+### Question: How are two variables related?
 
 ### Objectives:
 
 1. Visualize relationships and correlations between variables
 2. Use appropriate statistics to describe the relationships.
 
-## Scatter plots
+## 2.1 Scatter plots
 
 Scatter plots allow us to quickly understand and visualize relationships.
 
@@ -35,7 +35,7 @@ Scatter plots allow us to quickly understand and visualize relationships.
 
 The above is a great visual tool - but how do we define this relationship scientifically and statistically? We'll look at two different techniques, but often scientists tend to use both of these.
 
-## Correlations
+## 2.2 Correlations
 
 In everyday speech, *correlation* is often used interchangeably with relationship and is defined as:
 
@@ -43,13 +43,137 @@ In everyday speech, *correlation* is often used interchangeably with relationshi
 
 How is correlation defined in a mathematical sense? Using *correlation coefficients*.
 
-### Correlation coefficients
+### 2.2.1 Correlation coefficients
 
-There are a range of different correlation coefficients, but the most common of these is the *Pearson correlation coefficient*. The Pearson correlaiton coefficient, often referred to as simply the correlation coefficient, is given the symbol $r$ and describes the linear correlation between two variables. It takes a value between -1 and 1, where a value of 0 indicates no linear correlation and values further from 0 in either direction (closer to -1 and 1) indicate stronger linear correlations. The sign of the correlation coefficient describes the direction of the correlation e.g. a positive $r$ indicates a positive relationship between the variables.
+There are a range of different correlation coefficients, but the most common of these is the *Pearson correlation coefficient*. The Pearson correlaiton coefficient, often referred to as simply the correlation coefficient, is given the symbol $r$ and describes the linear correlation between two variables. It takes a value between -1 and 1, where a value of 0 indicates no linear correlation and values further from 0 in either direction (closer to -1 and 1) indicate stronger linear correlations. The sign of the correlation coefficient describes the direction of the correlation e.g. a positive $r$ indicates a positive relationship between the variables. See the image below for examples.
 
-image: ![](C:\Users\Catherine\Documents\REUColbyCoding\CMdev\RbigelowCMdev\Lab02_2018\Correlation_examples2.png)
+![](C:\Users\Catherine\Documents\REUColbyCoding\CMdev\RbigelowCMdev\Lab02_2018\Correlation_examples2.png)
+https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Correlation_examples2.svg
 
-## Linear regressions
+#### Example: What is the correlation coefficient between chlorophyll fluorescence and PAR?
+
+*Calculate the correlation coefficient for chl fl and PAR*
+```{r}
+
+```
+
+## 2.3 Linear regressions
+
+The relationship between two variables can be explained through a simple linear regression (here *simple* refers to the fact two variables are being related). The main outputs from this kind of analysis are a line or curve of best fit and various *summary statistics* or *goodness-of-fit statistics* or *explanatory variables* which define how good the linear regression is. This analysis can be extended to describe relationships between multiple variables via linear multiple regression analysis.
+
+### 2.3.1 Best fit line
+
+#### Example: What is the line of best fit between the chlorophyll fluoroescence and PAR?
+
+*calculate the slope and intercept and add to plot*
+```{r}
+```
+
+##### **Important side note about linear regressions**
+
+An important point to note is what makes a regression a *linear* regression. **It is not that you fit a straight line through your data.** We could in fact fit a quadratic or higher order polynomials to our data using linear regression techniques (see below): 
+
+*add a 2nd and 3rd order polynomial to graph*
+```{r}
+```
+
+What makes it a *linear* regression is the coefficients of the fit are linear. In the above plot, the equation for the quadratic is given by $EQN$. This equation is non-linear in the $x$-variable, but linear in the coefficients.
+
+
+### 2.3.2 Summary statistics
+
+There are a variety of different statistics which are used to describe how well the linear regression describes the relationship between the two variables. Here, we will consider the following two variables:
+
+1. Coefficient of determination, $R^2$ : gives a measure of how much of the variability of the $x$-variable is explained by the $y$-variable. For simple linear regressions which include the intercept term, $R^2=r^2$, i.e. the coefficient of determination is equal to the square of the correlation coefficient.
+
+2. $p$-value: describes the probability of the null hypothesis being true. In the case of linear regression analysis, the null hypothesis is there is no relationship between the two variables. If the $p$-value is found to be below a given significance level, typically taken as 0.05 (or 5%), then the null hypothesis can be rejected i.e. there is a statistically significant relationship between the two variables.
+
+#### Example: Does the straight line, quadatratic or 3rd order polynomial describe the relationship between chlorophyll fluorescence and PAR best?
+
+*make table with the various stats*
+```{r}
+```
+
+# 3. Temperature-Salinity Diagrams
+
+A special kind of scatter plot used in oceanography is a Temperature-Salinity diagram or T-S diagram. A T-S diagram is a great way to visualize the different water masses present in your data. 
+
+We've written a short R function that plots a T-S diagram from your CTD data. 
+
+
+```{r}
+#load the function into your R workspace:
+source('TSdiagram.R')
+
+#call the function:
+#NB MAY NEED TO CHANGE THIS DEPENDING ON HOW I IMPORT
+#THE CTD DATA
+TSdiagram(CTD[,2],CTD[,3]) 
+```
+
+## 3.1 Coding technique: for-loops
+
+When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a T-S diagram for each station on one of the cruises, rather than type out the code for each station individually, we can just write it once and iterate or *loop* over the code. 
+
+Let's start with a simple example:
+
+### Example: print the statement "hello" four times
+```{r}
+for (ii in 1:4) {
+  print("hello")
+}
+```
+
+### Example: print the statement "hello" four times, including the number at the start of the statement e.g. "1 hello"
+```{r}
+for (ii in 1:4) {
+  print(paste(ii,"hello"))
+}
+```
+
+### Example: plot a T-S diagram for each station
+*This is what Nick had last time. Probably needs changed here because we are reading the data in differently*
+
+```{r}
+for (i in 1:4) {
+CTD <- read.csv(paste('20170912Colbysta',toString(i),'.csv',sep=""))
+TSdiagram(CTD[,2],CTD[,3],xlim=c(31,33),ylim=c(5,15))
+cat("press a key to continue")
+blah <- readline()
+}
+```
+
+
+*Other possible subsection: Line graphs for different stations (instead of bar charts)??*
+
+# 4 Categorical data (t-tests, bar charts, box plots, other stats?)
+
+## 4.1 t-tests
+*a bit of a contrived example...*
+
+1.	use discrete data and determine the mean chl conc for each station and depth
+2.	use t-test to answer: is the surface chl conc different at station 1 compared to station 2
+
+## 4.2 Bar charts
+
+Bar charts for categorical data e.g. three different treatments and the photosynthetic rate at each treatment
+
+## 4.3 Box plots
+Box plots for categorical data where you have multiple measurements at each treatment so can do a mean, stdev, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
