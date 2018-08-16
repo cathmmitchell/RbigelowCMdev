@@ -1,0 +1,55 @@
+---
+title: "Lab 2: Statistics and Data Visualization"
+output: html_notebook
+---
+
+This lab focuses on statstics and data visualization, with the aim of using CTD data to look for relationships in oceanographic data. The tools you are introduced to here can be used to graph and analyze data in your labs, your independent research projects and the cruise data gathered throughout the semester. Be sure to save any scripts that you develop so you can continue to use them.
+
+# Importing Data
+
+*This section will be a copy from Lab 1*
+
+```{r}
+
+```
+
+# Scatter plots, correlations and linear regressions
+
+### Question: How is one variable related to another?
+
+### Objectives:
+
+1. Visualize relationships and correlations between variables
+2. Use appropriate statistics to describe the relationships.
+
+## Scatter plots
+
+Scatter plots allow us to quickly understand and visualize relationships.
+
+#### Example: How is chlorophyll fluorescence related to PAR?
+
+*Just do a scatter plot, no best fit line*
+```{r}
+
+```
+
+The above is a great visual tool - but how do we define this relationship scientifically and statistically? We'll look at two different techniques, but often scientists tend to use both of these.
+
+## Correlations
+
+In everyday speech, *correlation* is often used interchangeably with relationship and is defined as:
+
+> the state or relation of being correlated; specifically : a relation existing between phenomena or things or between mathematical or statistical variables which tend to vary, be associated, or occur together in a way not expected on the basis of chance alone.
+
+How is correlation defined in a mathematical sense? Using *correlation coefficients*.
+
+### Correlation coefficients
+
+There are a range of different correlation coefficients, but the most common of these is the *Pearson correlation coefficient*. The Pearson correlaiton coefficient, often referred to as simply the correlation coefficient, is given the symbol $r$ and describes the linear correlation between two variables. It takes a value between -1 and 1, where a value of 0 indicates no linear correlation and values further from 0 in either direction (closer to -1 and 1) indicate stronger linear correlations. The sign of the correlation coefficient describes the direction of the correlation e.g. a positive $r$ indicates a positive relationship between the variables.
+
+image: ![](C:\Users\Catherine\Documents\REUColbyCoding\CMdev\RbigelowCMdev\Lab02_2018\Correlation_examples2.png)
+
+## Linear regressions
+
+
+
