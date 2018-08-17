@@ -26,7 +26,7 @@ This lab focuses on statstics and data visualization, with the aim of using CTD 
 
 Scatter plots allow us to quickly understand and visualize relationships.
 
-#### Example: How is chlorophyll fluorescence related to PAR?
+#### Example: How is chlorophyll fluorescence related to temperature?
 
 *Just do a scatter plot, no best fit line*
 ```{r}
@@ -47,12 +47,12 @@ How is correlation defined in a mathematical sense? Using *correlation coefficie
 
 There are a range of different correlation coefficients, but the most common of these is the *Pearson correlation coefficient*. The Pearson correlaiton coefficient, often referred to as simply the correlation coefficient, is given the symbol $r$ and describes the linear correlation between two variables. It takes a value between -1 and 1, where a value of 0 indicates no linear correlation and values further from 0 in either direction (closer to -1 and 1) indicate stronger linear correlations. The sign of the correlation coefficient describes the direction of the correlation e.g. a positive $r$ indicates a positive relationship between the variables. See the image below for examples.
 
-![](C:\Users\Catherine\Documents\REUColbyCoding\CMdev\RbigelowCMdev\Lab02_2018\Correlation_examples2.png)
+![](Correlation_examples2.png)
 https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Correlation_examples2.svg
 
-#### Example: What is the correlation coefficient between chlorophyll fluorescence and PAR?
+#### Example: What is the correlation coefficient between chlorophyll fluorescence and temperature?
 
-*Calculate the correlation coefficient for chl fl and PAR*
+*Calculate the correlation coefficient for chl fl and temperature*
 ```{r}
 
 ```
@@ -63,7 +63,7 @@ The relationship between two variables can be explained through a simple linear 
 
 ### 2.3.1 Best fit line
 
-#### Example: What is the line of best fit between the chlorophyll fluoroescence and PAR?
+#### Example: What is the line of best fit between the chlorophyll fluoroescence and temperature?
 
 *calculate the slope and intercept and add to plot*
 ```{r}
@@ -88,7 +88,7 @@ There are a variety of different statistics which are used to describe how well 
 
 2. $p$-value: describes the probability of the null hypothesis being true. In the case of linear regression analysis, the null hypothesis is there is no relationship between the two variables. If the $p$-value is found to be below a given significance level, typically taken as 0.05 (or 5%), then the null hypothesis can be rejected i.e. there is a statistically significant relationship between the two variables.
 
-#### Example: Does the straight line, quadatratic or 3rd order polynomial describe the relationship between chlorophyll fluorescence and PAR best?
+#### Example: Does the straight line, quadatratic or 3rd order polynomial describe the relationship between chlorophyll fluorescence and temperature best?
 
 *make table with the various stats*
 ```{r}
