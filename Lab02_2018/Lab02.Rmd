@@ -7,10 +7,14 @@ This lab focuses on statistics and data visualization, with the aim of using CTD
 
 # 1. Importing Data
 
-*This section will be a copy from Lab 1*
+*We need to figure out how to import the data in a nice way (better than below)...*
 
 ```{r}
+library("readxl")
 
+DATA<- read_excel("Colby_cruise_data_2012-2017.xlsx",sheet="CTD all years",range=cell_cols("A:M"),col_types=c("skip","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+
+DATA <- DATA[-1,]
 ```
 
 # 2. Scatter plots, correlations and linear regressions
@@ -28,12 +32,18 @@ Scatter plots allow us to quickly understand and visualize relationships.
 
 #### Example: How is chlorophyll fluorescence related to temperature?
 
-*Just do a scatter plot, no best fit line*
 ```{r}
+library("ggplot2")
 
+ggplot(data = DATA) + 
+  geom_point(mapping = aes(x = Temperature, y = Fluorescence),color="blue",shape=18,size=1)
 ```
 
 The above is a great visual tool - but how do we define this relationship scientifically and statistically? We'll look at two different techniques, but often scientists tend to use both of these.
+
+**Resource for ggplot:** http://r4ds.had.co.nz/data-visualisation.html
+
+**Cheatsheet for ggplot:** https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf
 
 ## 2.2 Correlations
 
