@@ -62,9 +62,17 @@ https://en.wikipedia.org/wiki/Pearson_correlation_coefficient#/media/File:Correl
 
 #### Example: What is the correlation coefficient between chlorophyll fluorescence and temperature?
 
-*Calculate the correlation coefficient for chl fl and temperature*
 ```{r}
+# create variables for our two parameters of interest
+# NB: we want to the data to be vectors, rather than dataframe columns so we can perform our analysis, hence we need to use two brackets, [[]], to index the DATA dataframe
+temp <- DATA[['Temperature']]
+fl <- DATA[['Fluorescence']]
 
+# calculate the correlation coefficient
+corValue <- cor.test(temp, fl, method="pearson")
+
+# displaying the correlation coefficient
+corValue
 ```
 
 ## 2.3 Linear regressions
@@ -77,6 +85,17 @@ The relationship between two variables can be explained through a simple linear 
 
 *calculate the slope and intercept and add to plot*
 ```{r}
+# fitting a linear model between the two variables
+model1 <- lm(fl ~ temp)
+
+# assigning the slope and intercept fromt the model to variables
+slope <- model1['coefficients'][[1]][[2]]
+intercept <- model1['coefficients'][[1]][[1]]
+
+# adding the line to our plot
+ggplot(data = DATA) + 
+  geom_point(mapping = aes(x = Temperature, y = Fluorescence),color="blue",shape=18,size=1) +
+  geom_abline(slope=slope,intercept=intercept,size=0.5) 
 ```
 
 ##### **Important side note about linear regressions**
