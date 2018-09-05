@@ -1,0 +1,59 @@
+---
+title: "Lab 3: Visualizing 2D Data"
+output: html_notebook
+---
+## 3.1 Coding technique: for-loops
+
+When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a T-S diagram for each station on one of the cruises, rather than type out the code for each station individually, we can just write it once and iterate or *loop* over the code. 
+
+Let's start with a simple example:
+
+### Example: print the statement "hello" four times
+```{r}
+for (ii in 1:4) {
+  print("hello")
+}
+```
+
+### Example: print the statement "hello" four times, including the number at the start of the statement e.g. "1 hello"
+```{r}
+for (ii in 1:4) {
+  print(paste(ii,"hello"))
+}
+```
+
+### Example: plot a T-S diagram for each station
+*This is what Nick had last time. Probably needs changed here because we are reading the data in differently*
+
+```{r}
+for (i in 1:4) {
+CTD <- read.csv(paste('20170912Colbysta',toString(i),'.csv',sep=""))
+TSdiagram(CTD[,2],CTD[,3],xlim=c(31,33),ylim=c(5,15))
+cat("press a key to continue")
+blah <- readline()
+}
+```
+
+
+*Other possible subsection: Line graphs for different stations (instead of bar charts)??*
+
+# 4 Categorical data (t-tests, bar charts, box plots, other stats?)
+
+## 4.1 t-tests
+*a bit of a contrived example...*
+
+1.	use discrete data and determine the mean chl conc for each station and depth
+2.	use t-test to answer: is the surface chl conc different at station 1 compared to station 2
+
+## 4.2 Bar charts
+
+Bar charts for categorical data e.g. three different treatments and the photosynthetic rate at each treatment
+
+## 4.3 Box plots
+Box plots for categorical data where you have multiple measurements at each treatment so can do a mean, stdev, etc.
+
+
+
+
+
+

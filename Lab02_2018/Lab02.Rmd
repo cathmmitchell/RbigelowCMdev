@@ -7,17 +7,33 @@ This lab focuses on statistics and data visualization, with the aim of using CTD
 
 # 1. Importing Data
 
-*We need to figure out how to import the data in a nice way (better than below)...*
+Last week, we used a csv file that was ready to import into R. More often than not, you'll have to wrangle your data into a form that is readable by R. Today, we'll take a step backwards from where we started last week, and start by creating the csv file to import into R.
+
+1. Open Colby_cruise_data_2012-2017.xlsx
+2. Go to the "CTD all years" sheet
+3. Go to "File" -> "Save As" and select to save the file as a "CSV (Comma delimited)" file (selecting "yes"" to the windows that pop up)
+4. Open the csv file you just created
+5. Delete the 2nd row and remove the notes that are to the right hand side of the data
+
+You should be left with a rectangular block of numbers, with the first row as "headers" or column names, which looks the same as the file we started with last week.
+
+Let's read in the data:
 
 ```{r}
-library("readxl")
 
-DATA<- read_excel("Colby_cruise_data_2012-2017.xlsx",sheet="CTD all years",range=cell_cols("A:M"),col_types=c("skip","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"))
+DATA<- read.csv("Colby_cruise_data_2012-2017.csv", header=TRUE)
 
-DATA <- DATA[-1,]
 ```
 
 # 2. Scatter plots, correlations and linear regressions
+
+In this section, we'll make use of ggplot, part of the tidyverse package. The tidyverse is a group of R packages designed for data science. We need to install this package before using it:
+
+```{r}
+#install.packages("tidyverse")
+```
+
+For more information on the tidyverse see https://www.tidyverse.org/
 
 ### Question: How are two variables related?
 
@@ -134,7 +150,7 @@ ggplot(data = DATA) +
 
 ```
 
-What makes it a *linear* regression is the coefficients of the fit are linear. In the above plot, the equation for the quadratic is given by $EQN$. This equation is non-linear in the $x$-variable, but linear in the coefficients.
+What makes it a *linear* regression is the coefficients of the fit are linear. In the above plot, the equation for the quadratic is given by $y=0.036x^2-0.490x+1.700$. This equation is non-linear in the $x$-variable, but linear in the coefficients.
 
 *ADD IN A NONLINEAR REGRESSION HERE AS A QUICK ASIDE/EXAMPLE? E.G. EXPONENTIAL FIT??*
 
@@ -147,7 +163,7 @@ There are a variety of different statistics which are used to describe how well 
 
 2. $p$-value: describes the probability of the null hypothesis being true. In the case of linear regression analysis, the null hypothesis is there is no relationship between the two variables. If the $p$-value is found to be below a given significance level, typically taken as 0.05 (or 5%), then the null hypothesis can be rejected i.e. there is a statistically significant relationship between the two variables.
 
-*ADD IN DESCRIPTIONS OF ADJUSTED R-SQUARE, RESIDUAL STANDARD ERROR, F-STATISTIC AND DF*
+*ADD IN DESCRIPTIONS OF ADJUSTED R-SQUARE, RESIDUAL STANDARD ERROR*
 
 #### Example: Does the straight line, quadatratic or 3rd order polynomial describe the relationship between chlorophyll fluorescence and temperature best?
 
@@ -166,7 +182,6 @@ sum_model3 <- summary(model3)
 rsquare = c(sum_model1$r.squared,sum_model2$r.squared,sum_model3$r.squared)
 adjrsquare = c(sum_model1$adj.r.squared,sum_model2$adj.r.squared,sum_model3$adj.r.squared)
 sigma = c(sum_model1$sigma,sum_model2$sigma,sum_model3$sigma)
-#fstat = c(sum_model1$fstatistic,sum_model2$fstatistic,sum_model3$fstatistic)
 
 # unfortunately we can't extract the p-value in the same way, but we can calculate it separately
 pvalue = c(pf(sum_model1$fstatistic[[1]],sum_model1$fstatistic[[2]],sum_model1$fstatistic[[3]],lower.tail = FALSE),
@@ -179,6 +194,7 @@ statsData = data.frame(rsquare,adjrsquare,sigma,pvalue,row.names=c("model1","mod
 statsData
 
 # note: a quick & easy way to pull out the model coefficients and their associated statistics, displaying them in a digestable form, is to use the tidy function from the broom package (part of the tidyverse)
+library("broom")
 tidy(model1)
 ```
 
@@ -186,7 +202,12 @@ tidy(model1)
 
 A special kind of scatter plot used in oceanography is a Temperature-Salinity diagram or T-S diagram. A T-S diagram is a great way to visualize the different water masses present in your data. 
 
-We've written a short R function that plots a T-S diagram from your CTD data. 
+We've written a short R function that plots a T-S diagram from your CTD data. We'll need to import a couple of packages for it to work though:
+
+```{r}
+install.packages("marelac")
+install.packages("plot3D")
+```
 
 
 ```{r}
@@ -196,62 +217,8 @@ source('TSdiagram.R')
 #call the function:
 #NB MAY NEED TO CHANGE THIS DEPENDING ON HOW I IMPORT
 #THE CTD DATA
-TSdiagram(CTD[,2],CTD[,3]) 
+TSdiagram(DATA[["Temperature"]],DATA[,6]) 
 ```
-
-## 3.1 Coding technique: for-loops
-
-When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a T-S diagram for each station on one of the cruises, rather than type out the code for each station individually, we can just write it once and iterate or *loop* over the code. 
-
-Let's start with a simple example:
-
-### Example: print the statement "hello" four times
-```{r}
-for (ii in 1:4) {
-  print("hello")
-}
-```
-
-### Example: print the statement "hello" four times, including the number at the start of the statement e.g. "1 hello"
-```{r}
-for (ii in 1:4) {
-  print(paste(ii,"hello"))
-}
-```
-
-### Example: plot a T-S diagram for each station
-*This is what Nick had last time. Probably needs changed here because we are reading the data in differently*
-
-```{r}
-for (i in 1:4) {
-CTD <- read.csv(paste('20170912Colbysta',toString(i),'.csv',sep=""))
-TSdiagram(CTD[,2],CTD[,3],xlim=c(31,33),ylim=c(5,15))
-cat("press a key to continue")
-blah <- readline()
-}
-```
-
-
-*Other possible subsection: Line graphs for different stations (instead of bar charts)??*
-
-# 4 Categorical data (t-tests, bar charts, box plots, other stats?)
-
-## 4.1 t-tests
-*a bit of a contrived example...*
-
-1.	use discrete data and determine the mean chl conc for each station and depth
-2.	use t-test to answer: is the surface chl conc different at station 1 compared to station 2
-
-## 4.2 Bar charts
-
-Bar charts for categorical data e.g. three different treatments and the photosynthetic rate at each treatment
-
-## 4.3 Box plots
-Box plots for categorical data where you have multiple measurements at each treatment so can do a mean, stdev, etc.
-
-
-
-
 
 
 
