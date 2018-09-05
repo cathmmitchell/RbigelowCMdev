@@ -1,4 +1,4 @@
-Date,Station,Depth (m),COND,Temperature,Salinity (PSU),Density (kg/m^3),PAR/Irradiance,Fluorescence ,Turbidity,Beam,"Oxygen,",Oxygen
+Date,Station,Depth,COND,Temperature,Salinity,Density,PAR,Fluorescence,Turbidity,Beam,O2conc,O2Saturation
 11/09/2012,1,1.346,,16.8389,31.4812,22.8527,1.71E+03,3.1327,1.3913,,165.2259,65.95014
 11/09/2012,1,1.345,,16.8371,31.4801,22.8523,2.01E+03,3.1777,1.442,,162.01095,64.66411
 11/09/2012,1,1.354,,16.833,31.4811,22.854,1.69E+03,3.2303,1.5023,,158.81818,63.38518

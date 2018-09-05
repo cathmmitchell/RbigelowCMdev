@@ -14,13 +14,13 @@ Last week, we used a csv file that was ready to import into R. More often than n
 3. Go to "File" -> "Save As" and select to save the file as a "CSV (Comma delimited)" file (selecting "yes"" to the windows that pop up)
 4. Open the csv file you just created
 5. Delete the 2nd row and remove the notes that are to the right hand side of the data
+6. Remove units from column names and change the last two columns to "O2Conc" and "O2Saturation"
 
 You should be left with a rectangular block of numbers, with the first row as "headers" or column names, which looks the same as the file we started with last week.
 
 Let's read in the data:
 
 ```{r}
-
 DATA<- read.csv("Colby_cruise_data_2012-2017.csv", header=TRUE)
 
 ```
@@ -30,7 +30,7 @@ DATA<- read.csv("Colby_cruise_data_2012-2017.csv", header=TRUE)
 In this section, we'll make use of ggplot, part of the tidyverse package. The tidyverse is a group of R packages designed for data science. We need to install this package before using it:
 
 ```{r}
-#install.packages("tidyverse")
+install.packages("tidyverse")
 ```
 
 For more information on the tidyverse see https://www.tidyverse.org/
@@ -215,12 +215,16 @@ install.packages("plot3D")
 source('TSdiagram.R')
 
 #call the function:
-#NB MAY NEED TO CHANGE THIS DEPENDING ON HOW I IMPORT
-#THE CTD DATA
-TSdiagram(DATA[["Temperature"]],DATA[,6]) 
+TSdiagram(DATA[["Temperature"]],DATA[["Salinity"]]) 
 ```
 
+What we get is a plot of temperature vs salinity, with lines of constant density, or sigma (at an assumed atmospheric pressure of 1 bar).
 
+
+# 4. Assignment/Questions/Tasks
+
+1. Explore the relationship between two other variables (perhaps plotting the logarithm of a variable will be useful)
+2. TS colour??
 
 
 

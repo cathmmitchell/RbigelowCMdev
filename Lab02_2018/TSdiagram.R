@@ -1,4 +1,4 @@
-TSdiagram <- function(t,S,xlim=c(30,38),ylim=c(-5,30)){
+TSdiagram <- function(t,S,colvar,xlim=c(30,38),ylim=c(-5,30)){
   # Libraries needed for this function
   library(marelac)
   library(plot3D)
@@ -8,17 +8,28 @@ TSdiagram <- function(t,S,xlim=c(30,38),ylim=c(-5,30)){
   t.seq  <- seq(from = ylim[1], to = ylim[2], length.out = 100)
   sig.mat <- outer(S.seq, t.seq, FUN = function(S, t) sw_dens(S = S, t = t) - 1000)
   
-  #Plot contours
-  contour2D(x = S.seq, y = t.seq, z = sig.mat, lwd = 2,
-            xlab = "Salinity (psu)", ylab = "Temperature (deg C)", 
-            main = "Sigma, p = 0 dbars")
+  if(missing(colvar)){
+    #Plot contours
+    contour2D(x = S.seq, y = t.seq, z = sig.mat, lwd = 2,
+              xlab = "Salinity (psu)", ylab = "Temperature (deg C)", 
+              main = "Sigma, p = 0 dbars")
+    
+    #Scatter plot temperature
+    scatter2D(S, t, col = 'black', pch = '.', cex = 2, add = TRUE, 
+              colkey = FALSE)
+  } else {
+    #Plot contours
+    contour2D(x = S.seq, y = t.seq, z = sig.mat, lwd = 2, colkey = FALSE,
+              xlab = "Salinity (psu)", ylab = "Temperature (deg C)", 
+              main = "Sigma, p = 0 dbars")
+    
+    #for colored points
+    scatter2D(S, t, colvar = colvar, pch = 20, cex = 1, add = TRUE)#, add = TRUE, clim = range(sig.mat), colkey = FALSE)
+  }
   
-  #Scatter plot temperature
-  scatter2D(S, t, col = 'black', pch = '.', cex = 2, add = TRUE, 
-            colkey = FALSE)
   
   # for colored points
-  # sigma <- sw_dens(S = S, t = t) - 1000       
-  # scatter2D(S, t, colvar = sigma, pch = 18, cex = 2, add = TRUE, clim = range(sig.mat), colkey = FALSE)
+  #sigma <- sw_dens(S = S, t = t) - 1000       
+  #scatter2D(S, t, colvar = sigma, pch = 18, cex = 2, add = TRUE, clim = range(sig.mat), colkey = FALSE)
   
 }

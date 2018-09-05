@@ -176,12 +176,19 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="coding-technique-for-loops" class="section level2">
-<h2>3.1 Coding technique: for-loops</h2>
-<p>When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a T-S diagram for each station on one of the cruises, rather than type out the code for each station individually, we can just write it once and iterate or <em>loop</em> over the code.</p>
+<div id="importing-and-wrangling-data" class="section level1">
+<h1>1. Importing and wrangling data</h1>
+<p>want data grouped by cruise: maybe matrix for each cruise</p>
+</div>
+<div id="plotting-oceanographic-section" class="section level1">
+<h1>2. Plotting oceanographic section</h1>
+</div>
+<div id="coding-technique-for-loops" class="section level1">
+<h1>3. Coding technique: for-loops</h1>
+<p>When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a section for each cruise, rather than type out the code for each cruise individually, we can just write it once and iterate or <em>loop</em> over the code.</p>
 <p>Let’s start with a simple example:</p>
-<div id="example-print-the-statement-hello-four-times" class="section level3">
-<h3>Example: print the statement “hello” four times</h3>
+<div id="example-print-the-statement-hello-four-times" class="section level4">
+<h4>Example: print the statement “hello” four times</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChpaSBpbiAxOjQpIHtcbiAgcHJpbnQoXCJoZWxsb1wiKVxufVxuYGBgIn0= -->
@@ -189,11 +196,17 @@ $(document).ready(function () {
   print(&quot;hello&quot;)
 }</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaGVsbG9cIlxuWzFdIFwiaGVsbG9cIlxuWzFdIFwiaGVsbG9cIlxuWzFdIFwiaGVsbG9cIlxuIn0= -->
+<pre><code>[1] &quot;hello&quot;
+[1] &quot;hello&quot;
+[1] &quot;hello&quot;
+[1] &quot;hello&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="example-print-the-statement-hello-four-times-including-the-number-at-the-start-of-the-statement-e.g.-1-hello" class="section level3">
-<h3>Example: print the statement “hello” four times, including the number at the start of the statement e.g. “1 hello”</h3>
+<div id="example-print-the-statement-hello-four-times-including-the-number-at-the-start-of-the-statement-e.g.-1-hello" class="section level4">
+<h4>Example: print the statement “hello” four times, including the number at the start of the statement e.g. “1 hello”</h4>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChpaSBpbiAxOjQpIHtcbiAgcHJpbnQocGFzdGUoaWksXCJoZWxsb1wiKSlcbn1cbmBgYCJ9 -->
@@ -201,26 +214,32 @@ $(document).ready(function () {
   print(paste(ii,&quot;hello&quot;))
 }</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMSBoZWxsb1wiXG5bMV0gXCIyIGhlbGxvXCJcblsxXSBcIjMgaGVsbG9cIlxuWzFdIFwiNCBoZWxsb1wiXG4ifQ== -->
+<pre><code>[1] &quot;1 hello&quot;
+[1] &quot;2 hello&quot;
+[1] &quot;3 hello&quot;
+[1] &quot;4 hello&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
-<div id="example-plot-a-t-s-diagram-for-each-station" class="section level3">
-<h3>Example: plot a T-S diagram for each station</h3>
+<div id="example-plot-a-section-for-each-cruise" class="section level4">
+<h4>Example: plot a section for each cruise</h4>
 <p><em>This is what Nick had last time. Probably needs changed here because we are reading the data in differently</em></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChpIGluIDE6NCkge1xuQ1REIDwtIHJlYWQuY3N2KHBhc3RlKCcyMDE3MDkxMkNvbGJ5c3RhJyx0b1N0cmluZyhpKSwnLmNzdicsc2VwPVwiXCIpKVxuVFNkaWFncmFtKENURFssMl0sQ1REWywzXSx4bGltPWMoMzEsMzMpLHlsaW09Yyg1LDE1KSlcbmNhdChcInByZXNzIGEga2V5IHRvIGNvbnRpbnVlXCIpXG5ibGFoIDwtIHJlYWRsaW5lKClcbn1cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9yIChpIGluIDE6NCkge1xuI2RvIHNvbWV0aGluZyBoZXJlXG59XG5gYGAifQ== -->
 <pre class="r"><code>for (i in 1:4) {
-CTD &lt;- read.csv(paste('20170912Colbysta',toString(i),'.csv',sep=&quot;&quot;))
-TSdiagram(CTD[,2],CTD[,3],xlim=c(31,33),ylim=c(5,15))
-cat(&quot;press a key to continue&quot;)
-blah &lt;- readline()
+#do something here
 }</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p><em>Other possible subsection: Line graphs for different stations (instead of bar charts)??</em></p>
 </div>
+</div>
+<div id="assignmentstasks" class="section level1">
+<h1>4. Assignments/tasks</h1>
+<p><em>Other possible subsection: Line graphs for different stations (instead of bar charts)??</em></p>
 </div>
 <div id="categorical-data-t-tests-bar-charts-box-plots-other-stats" class="section level1">
 <h1>4 Categorical data (t-tests, bar charts, box plots, other stats?)</h1>
@@ -243,7 +262,7 @@ blah &lt;- readline()
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiAzOiBWaXN1YWxpemluZyAyRCBEYXRhIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCiMjIDMuMSBDb2RpbmcgdGVjaG5pcXVlOiBmb3ItbG9vcHMNCg0KV2hlbiB5b3Ugd2FudCB0byByZXBlYXQgdGhlIHNhbWUgYml0IG9mIGNvZGUgbXVsdGlwbGUgdGltZXMsIGEgZm9yLWxvb3AgY2FuIGJlIHlvdXIgZnJpZW5kLiBGb3IgZXhhbXBsZSwgaWYgeW91IHdvdWxkIGxpa2UgdG8gcGxvdCBhIFQtUyBkaWFncmFtIGZvciBlYWNoIHN0YXRpb24gb24gb25lIG9mIHRoZSBjcnVpc2VzLCByYXRoZXIgdGhhbiB0eXBlIG91dCB0aGUgY29kZSBmb3IgZWFjaCBzdGF0aW9uIGluZGl2aWR1YWxseSwgd2UgY2FuIGp1c3Qgd3JpdGUgaXQgb25jZSBhbmQgaXRlcmF0ZSBvciAqbG9vcCogb3ZlciB0aGUgY29kZS4gDQoNCkxldCdzIHN0YXJ0IHdpdGggYSBzaW1wbGUgZXhhbXBsZToNCg0KIyMjIEV4YW1wbGU6IHByaW50IHRoZSBzdGF0ZW1lbnQgImhlbGxvIiBmb3VyIHRpbWVzDQpgYGB7cn0NCmZvciAoaWkgaW4gMTo0KSB7DQogIHByaW50KCJoZWxsbyIpDQp9DQpgYGANCg0KIyMjIEV4YW1wbGU6IHByaW50IHRoZSBzdGF0ZW1lbnQgImhlbGxvIiBmb3VyIHRpbWVzLCBpbmNsdWRpbmcgdGhlIG51bWJlciBhdCB0aGUgc3RhcnQgb2YgdGhlIHN0YXRlbWVudCBlLmcuICIxIGhlbGxvIg0KYGBge3J9DQpmb3IgKGlpIGluIDE6NCkgew0KICBwcmludChwYXN0ZShpaSwiaGVsbG8iKSkNCn0NCmBgYA0KDQojIyMgRXhhbXBsZTogcGxvdCBhIFQtUyBkaWFncmFtIGZvciBlYWNoIHN0YXRpb24NCipUaGlzIGlzIHdoYXQgTmljayBoYWQgbGFzdCB0aW1lLiBQcm9iYWJseSBuZWVkcyBjaGFuZ2VkIGhlcmUgYmVjYXVzZSB3ZSBhcmUgcmVhZGluZyB0aGUgZGF0YSBpbiBkaWZmZXJlbnRseSoNCg0KYGBge3J9DQpmb3IgKGkgaW4gMTo0KSB7DQpDVEQgPC0gcmVhZC5jc3YocGFzdGUoJzIwMTcwOTEyQ29sYnlzdGEnLHRvU3RyaW5nKGkpLCcuY3N2JyxzZXA9IiIpKQ0KVFNkaWFncmFtKENURFssMl0sQ1REWywzXSx4bGltPWMoMzEsMzMpLHlsaW09Yyg1LDE1KSkNCmNhdCgicHJlc3MgYSBrZXkgdG8gY29udGludWUiKQ0KYmxhaCA8LSByZWFkbGluZSgpDQp9DQpgYGANCg0KDQoqT3RoZXIgcG9zc2libGUgc3Vic2VjdGlvbjogTGluZSBncmFwaHMgZm9yIGRpZmZlcmVudCBzdGF0aW9ucyAoaW5zdGVhZCBvZiBiYXIgY2hhcnRzKT8/Kg0KDQojIDQgQ2F0ZWdvcmljYWwgZGF0YSAodC10ZXN0cywgYmFyIGNoYXJ0cywgYm94IHBsb3RzLCBvdGhlciBzdGF0cz8pDQoNCiMjIDQuMSB0LXRlc3RzDQoqYSBiaXQgb2YgYSBjb250cml2ZWQgZXhhbXBsZS4uLioNCg0KMS4JdXNlIGRpc2NyZXRlIGRhdGEgYW5kIGRldGVybWluZSB0aGUgbWVhbiBjaGwgY29uYyBmb3IgZWFjaCBzdGF0aW9uIGFuZCBkZXB0aA0KMi4JdXNlIHQtdGVzdCB0byBhbnN3ZXI6IGlzIHRoZSBzdXJmYWNlIGNobCBjb25jIGRpZmZlcmVudCBhdCBzdGF0aW9uIDEgY29tcGFyZWQgdG8gc3RhdGlvbiAyDQoNCiMjIDQuMiBCYXIgY2hhcnRzDQoNCkJhciBjaGFydHMgZm9yIGNhdGVnb3JpY2FsIGRhdGEgZS5nLiB0aHJlZSBkaWZmZXJlbnQgdHJlYXRtZW50cyBhbmQgdGhlIHBob3Rvc3ludGhldGljIHJhdGUgYXQgZWFjaCB0cmVhdG1lbnQNCg0KIyMgNC4zIEJveCBwbG90cw0KQm94IHBsb3RzIGZvciBjYXRlZ29yaWNhbCBkYXRhIHdoZXJlIHlvdSBoYXZlIG11bHRpcGxlIG1lYXN1cmVtZW50cyBhdCBlYWNoIHRyZWF0bWVudCBzbyBjYW4gZG8gYSBtZWFuLCBzdGRldiwgZXRjLg0KDQoNCg0KDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkxhYiAzOiBWaXN1YWxpemluZyAyRCBEYXRhIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KIyAxLiBJbXBvcnRpbmcgYW5kIHdyYW5nbGluZyBkYXRhDQoNCndhbnQgZGF0YSBncm91cGVkIGJ5IGNydWlzZTogbWF5YmUgbWF0cml4IGZvciBlYWNoIGNydWlzZQ0KDQojIDIuIFBsb3R0aW5nIG9jZWFub2dyYXBoaWMgc2VjdGlvbg0KDQoNCg0KIyAzLiBDb2RpbmcgdGVjaG5pcXVlOiBmb3ItbG9vcHMNCg0KV2hlbiB5b3Ugd2FudCB0byByZXBlYXQgdGhlIHNhbWUgYml0IG9mIGNvZGUgbXVsdGlwbGUgdGltZXMsIGEgZm9yLWxvb3AgY2FuIGJlIHlvdXIgZnJpZW5kLiBGb3IgZXhhbXBsZSwgaWYgeW91IHdvdWxkIGxpa2UgdG8gcGxvdCBhIHNlY3Rpb24gZm9yIGVhY2ggY3J1aXNlLCByYXRoZXIgdGhhbiB0eXBlIG91dCB0aGUgY29kZSBmb3IgZWFjaCBjcnVpc2UgaW5kaXZpZHVhbGx5LCB3ZSBjYW4ganVzdCB3cml0ZSBpdCBvbmNlIGFuZCBpdGVyYXRlIG9yICpsb29wKiBvdmVyIHRoZSBjb2RlLiANCg0KTGV0J3Mgc3RhcnQgd2l0aCBhIHNpbXBsZSBleGFtcGxlOg0KDQojIyMjIEV4YW1wbGU6IHByaW50IHRoZSBzdGF0ZW1lbnQgImhlbGxvIiBmb3VyIHRpbWVzDQpgYGB7cn0NCmZvciAoaWkgaW4gMTo0KSB7DQogIHByaW50KCJoZWxsbyIpDQp9DQpgYGANCg0KIyMjIyBFeGFtcGxlOiBwcmludCB0aGUgc3RhdGVtZW50ICJoZWxsbyIgZm91ciB0aW1lcywgaW5jbHVkaW5nIHRoZSBudW1iZXIgYXQgdGhlIHN0YXJ0IG9mIHRoZSBzdGF0ZW1lbnQgZS5nLiAiMSBoZWxsbyINCmBgYHtyfQ0KZm9yIChpaSBpbiAxOjQpIHsNCiAgcHJpbnQocGFzdGUoaWksImhlbGxvIikpDQp9DQpgYGANCg0KIyMjIyBFeGFtcGxlOiBwbG90IGEgc2VjdGlvbiBmb3IgZWFjaCBjcnVpc2UNCipUaGlzIGlzIHdoYXQgTmljayBoYWQgbGFzdCB0aW1lLiBQcm9iYWJseSBuZWVkcyBjaGFuZ2VkIGhlcmUgYmVjYXVzZSB3ZSBhcmUgcmVhZGluZyB0aGUgZGF0YSBpbiBkaWZmZXJlbnRseSoNCg0KYGBge3J9DQpmb3IgKGkgaW4gMTo0KSB7DQojZG8gc29tZXRoaW5nIGhlcmUNCn0NCmBgYA0KDQoNCiMgNC4gQXNzaWdubWVudHMvdGFza3MNCg0KDQoNCipPdGhlciBwb3NzaWJsZSBzdWJzZWN0aW9uOiBMaW5lIGdyYXBocyBmb3IgZGlmZmVyZW50IHN0YXRpb25zIChpbnN0ZWFkIG9mIGJhciBjaGFydHMpPz8qDQoNCiMgNCBDYXRlZ29yaWNhbCBkYXRhICh0LXRlc3RzLCBiYXIgY2hhcnRzLCBib3ggcGxvdHMsIG90aGVyIHN0YXRzPykNCg0KIyMgNC4xIHQtdGVzdHMNCiphIGJpdCBvZiBhIGNvbnRyaXZlZCBleGFtcGxlLi4uKg0KDQoxLgl1c2UgZGlzY3JldGUgZGF0YSBhbmQgZGV0ZXJtaW5lIHRoZSBtZWFuIGNobCBjb25jIGZvciBlYWNoIHN0YXRpb24gYW5kIGRlcHRoDQoyLgl1c2UgdC10ZXN0IHRvIGFuc3dlcjogaXMgdGhlIHN1cmZhY2UgY2hsIGNvbmMgZGlmZmVyZW50IGF0IHN0YXRpb24gMSBjb21wYXJlZCB0byBzdGF0aW9uIDINCg0KIyMgNC4yIEJhciBjaGFydHMNCg0KQmFyIGNoYXJ0cyBmb3IgY2F0ZWdvcmljYWwgZGF0YSBlLmcuIHRocmVlIGRpZmZlcmVudCB0cmVhdG1lbnRzIGFuZCB0aGUgcGhvdG9zeW50aGV0aWMgcmF0ZSBhdCBlYWNoIHRyZWF0bWVudA0KDQojIyA0LjMgQm94IHBsb3RzDQpCb3ggcGxvdHMgZm9yIGNhdGVnb3JpY2FsIGRhdGEgd2hlcmUgeW91IGhhdmUgbXVsdGlwbGUgbWVhc3VyZW1lbnRzIGF0IGVhY2ggdHJlYXRtZW50IHNvIGNhbiBkbyBhIG1lYW4sIHN0ZGV2LCBldGMuDQoNCg0KDQoNCg0KDQo=</div>
 
 
 

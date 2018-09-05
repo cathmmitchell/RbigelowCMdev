@@ -2,37 +2,47 @@
 title: "Lab 3: Visualizing 2D Data"
 output: html_notebook
 ---
-## 3.1 Coding technique: for-loops
 
-When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a T-S diagram for each station on one of the cruises, rather than type out the code for each station individually, we can just write it once and iterate or *loop* over the code. 
+# 1. Importing and wrangling data
+
+want data grouped by cruise: maybe matrix for each cruise
+
+# 2. Plotting oceanographic section
+
+
+
+# 3. Coding technique: for-loops
+
+When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a section for each cruise, rather than type out the code for each cruise individually, we can just write it once and iterate or *loop* over the code. 
 
 Let's start with a simple example:
 
-### Example: print the statement "hello" four times
+#### Example: print the statement "hello" four times
 ```{r}
 for (ii in 1:4) {
   print("hello")
 }
 ```
 
-### Example: print the statement "hello" four times, including the number at the start of the statement e.g. "1 hello"
+#### Example: print the statement "hello" four times, including the number at the start of the statement e.g. "1 hello"
 ```{r}
 for (ii in 1:4) {
   print(paste(ii,"hello"))
 }
 ```
 
-### Example: plot a T-S diagram for each station
+#### Example: plot a section for each cruise
 *This is what Nick had last time. Probably needs changed here because we are reading the data in differently*
 
 ```{r}
 for (i in 1:4) {
-CTD <- read.csv(paste('20170912Colbysta',toString(i),'.csv',sep=""))
-TSdiagram(CTD[,2],CTD[,3],xlim=c(31,33),ylim=c(5,15))
-cat("press a key to continue")
-blah <- readline()
+#do something here
 }
 ```
+
+
+# 4. Assignments/tasks
+
 
 
 *Other possible subsection: Line graphs for different stations (instead of bar charts)??*
