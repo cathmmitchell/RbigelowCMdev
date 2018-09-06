@@ -220,11 +220,17 @@ TSdiagram(DATA[["Temperature"]],DATA[["Salinity"]])
 
 What we get is a plot of temperature vs salinity, with lines of constant density, or sigma (at an assumed atmospheric pressure of 1 bar).
 
+We can also look at how other variables are related to temperature and salinity by plotting the color of the points based on the variable value:
+
+```{r}
+TSdiagram(DATA[["Temperature"]],DATA[["Salinity"]],DATA[['Fluorescence']]) 
+```
+
 
 # 4. Assignment/Questions/Tasks
 
-1. Explore the relationship between two other variables (perhaps plotting the logarithm of a variable will be useful)
-2. TS colour??
+1. Explore the relationship between two other variables (perhaps plotting the logarithm of a variable will be useful). Are the variables correlated? How well does a linear regression represent the relationship?
+2. Try plotting different variables on a T-S diagram. What does this tell you about the different waters sampled on the cruises?
 
 
 

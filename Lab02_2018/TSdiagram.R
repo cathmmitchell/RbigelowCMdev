@@ -19,12 +19,19 @@ TSdiagram <- function(t,S,colvar,xlim=c(30,38),ylim=c(-5,30)){
               colkey = FALSE)
   } else {
     #Plot contours
-    contour2D(x = S.seq, y = t.seq, z = sig.mat, lwd = 2, colkey = FALSE,
+    #opar <- par()
+    #par(pin = c(4,2))
+    contour(x = S.seq, y = t.seq, z = sig.mat, lwd = 2,
               xlab = "Salinity (psu)", ylab = "Temperature (deg C)", 
               main = "Sigma, p = 0 dbars")
     
     #for colored points
-    scatter2D(S, t, colvar = colvar, pch = 20, cex = 1, add = TRUE)#, add = TRUE, clim = range(sig.mat), colkey = FALSE)
+    scatter2D(S, t, colvar = colvar, pch = 20, cex = 1, add = TRUE,
+              colkey=FALSE)
+    
+    
+    #par(opar)
+    colkey(add=TRUE,side=4,dist=-0.045,clim=range(colvar,na.rm = TRUE))
   }
   
   
@@ -32,4 +39,4 @@ TSdiagram <- function(t,S,colvar,xlim=c(30,38),ylim=c(-5,30)){
   #sigma <- sw_dens(S = S, t = t) - 1000       
   #scatter2D(S, t, colvar = sigma, pch = 18, cex = 2, add = TRUE, clim = range(sig.mat), colkey = FALSE)
   
-}
+} 
