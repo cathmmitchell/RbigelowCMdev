@@ -1,5 +1,5 @@
 ---
-title: "Lab 2: Statistics and Data Visualization"
+title: "Lab 2: Visualization and statistics with CTD data"
 output: html_notebook
 ---
 
@@ -151,8 +151,6 @@ ggplot(data = DATA) +
 ```
 
 What makes it a *linear* regression is the coefficients of the fit are linear. In the above plot, the equation for the quadratic is given by $y=0.036x^2-0.490x+1.700$. This equation is non-linear in the $x$-variable, but linear in the coefficients.
-
-*ADD IN A NONLINEAR REGRESSION HERE AS A QUICK ASIDE/EXAMPLE? E.G. EXPONENTIAL FIT??*
 
 
 ### 2.3.2 Summary statistics

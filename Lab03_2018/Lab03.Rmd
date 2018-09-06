@@ -1,17 +1,22 @@
 ---
-title: "Lab 3: Visualizing 2D Data"
+title: "Lab 3: Visualizing oceanographic sections"
 output: html_notebook
 ---
 
+This lab focuses on visualizing oceanographic sections. The tools you are introduced to here can be used to graph and analyze data in your labs, your independent research projects and the cruise data gathered throughout the semester. Be sure to save any scripts that you develop so you can continue to use them.
+
 # 1. Importing and wrangling data
 
-want data grouped by cruise: maybe matrix for each cruise
+This week, we are going to start with the data from the csv files we created last week. However, before we can plot the oceanographic sections, we need to wrangle the data into an easier form to work with. A lot of your time coding can be spent wrangling data, but it is definitely worth spending the time to get your data into a format that is easy to use, manipulate, plot and analyze. 
 
-# 2. Plotting oceanographic section
+For reasons which will become apparent later, we are going to group our data by cruise.
 
+```{r}
+# read in the whole csv file
+DATA <- read.csv('Colby_cruise_data_2012-2017.csv', header = TRUE)
+```
 
-
-# 3. Coding technique: for-loops
+## 1.1 Coding technique: for-loops
 
 When you want to repeat the same bit of code multiple times, a for-loop can be your friend. For example, if you would like to plot a section for each cruise, rather than type out the code for each cruise individually, we can just write it once and iterate or *loop* over the code. 
 
@@ -30,6 +35,15 @@ for (ii in 1:4) {
   print(paste(ii,"hello"))
 }
 ```
+
+## 1.2 Wrangling data
+
+loop through dates, make cruise matrix/df, group in list
+
+# 2. Plotting oceanographic section
+
+
+
 
 #### Example: plot a section for each cruise
 *This is what Nick had last time. Probably needs changed here because we are reading the data in differently*
