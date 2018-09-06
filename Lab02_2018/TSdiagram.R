@@ -1,4 +1,4 @@
-TSdiagram <- function(t,S,colvar,xlim=c(30,38),ylim=c(-5,30)){
+TSdiagram <- function(t,S,colvar,colorlabel,xlim=c(30,38),ylim=c(-5,30)){
   # Libraries needed for this function
   library(marelac)
   library(plot3D)
@@ -23,7 +23,7 @@ TSdiagram <- function(t,S,colvar,xlim=c(30,38),ylim=c(-5,30)){
     #par(pin = c(4,2))
     contour(x = S.seq, y = t.seq, z = sig.mat, lwd = 2,
               xlab = "Salinity (psu)", ylab = "Temperature (deg C)", 
-              main = "Sigma, p = 0 dbars")
+              main = colorlabel)
     
     #for colored points
     scatter2D(S, t, colvar = colvar, pch = 20, cex = 1, add = TRUE,
