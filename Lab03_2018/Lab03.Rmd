@@ -9,7 +9,7 @@ This lab focuses on visualizing oceanographic sections. The tools you are introd
 
 This week, we are going to start with the data from the csv files we created last week. However, before we can plot the oceanographic sections, we need to wrangle the data into an easier form to work with. A lot of your time coding can be spent wrangling data, but it is definitely worth spending the time to get your data into a format that is easy to use, manipulate, plot and analyze. 
 
-For reasons which will become apparent later, we are going to group our data by cruise.
+Let's start by importing the data as before.
 
 ```{r}
 # read in the whole csv file
@@ -38,7 +38,32 @@ for (ii in 1:4) {
 
 ## 1.2 Wrangling data
 
-loop through dates, make cruise matrix/df, group in list
+For reasons which will become apparent later, we are going to group our data by cruise. To do this we are going to take the following steps:
+
+1. loop through each cruise (using the dates to identify different cruises)
+2. extract the data for the required cruise from the main `DATA` list 
+3. create a unique cruise name for the required cruise of the form: colbyYYYYMMDD, where YYYYMMDD is the date in year, month, day
+4. add the cruise data to a master list, labelling it with the unique cruise id.
+
+```{r}
+#making a list of the dates of each cruise
+dates <- unique(DATA[['Date']])
+
+#creating an empty list which we will fill with more lists in a for-loop
+cruiseList <- list()
+
+#loop to extract each cruise from the main DATA list and to group the individual cruise lists into one master list: cruiseList
+for (dd in dates){
+  #extracting a specific cruise into a list from the main DATA list
+  cruiseData <- DATA[DATA[['Date']] == dd,]
+  
+  #making a unique cruise id
+  id <- paste("colby",dd,sep="")
+  
+  #adding the cruiseData list to the master cruiseList, naming it with the unique id
+  cruiseList[[id]] <- cruiseData
+}
+```
 
 # 2. Plotting oceanographic section
 
