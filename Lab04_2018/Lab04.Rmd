@@ -1,0 +1,26 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+*Other possible subsection: Line graphs for different stations (instead of bar charts)??*
+
+# 4 Categorical data (t-tests, bar charts, box plots, other stats?)
+
+## 4.1 t-tests
+*a bit of a contrived example...*
+
+1.	use discrete data and determine the mean chl conc for each station and depth
+2.	use t-test to answer: is the surface chl conc different at station 1 compared to station 2
+
+## 4.2 Bar charts
+
+Bar charts for categorical data e.g. three different treatments and the photosynthetic rate at each treatment
+
+## 4.3 Box plots
+Box plots for categorical data where you have multiple measurements at each treatment so can do a mean, stdev, etc.
+
+
+
+
+
+
