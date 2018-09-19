@@ -1,7 +1,113 @@
 ---
-title: "R Notebook"
+title: "Lab 3: Visualizing XXXXXXXXXXXXx"
 output: html_notebook
 ---
+
+This lab focuses on visualizing XXXXXXXXXXXXXXX. The tools you are introduced to here can be used to graph and analyze data in your labs, your independent research projects and the cruise data gathered throughout the semester. Be sure to save any scripts that you develop so you can continue to use them.
+
+# 1. Importing and wrangling data
+
+Today, we are going to import and wrangle the CTD data in the same way as yesterday.
+
+Let's start by importing the data as before.
+
+```{r}
+# read in the whole csv file
+DATA <- read.csv('Colby_cruise_data_2012-2017.csv', header = TRUE)
+```
+
+Now, let's make the `cruiseList` like yesterday:
+
+
+```{r}
+#making a list of the dates of each cruise
+dates <- unique(DATA[['Date']])
+
+#creating an empty list which we will fill with more lists in a for-loop
+cruiseList <- list()
+
+#loop to extract each cruise from the main DATA data frame and to group the individual cruise lists into one master list: cruiseList
+for (dd in dates){
+  #extracting a specific cruise into a list from the main DATA data frame
+  cruiseData <- DATA[DATA[['Date']] == dd,]
+  
+  #making a unique cruise id
+  id <- paste("colby",dd,sep="")
+  
+  #making a list of all the stations on this cruise
+  stations <- unique(cruiseData$Station)
+
+  #creating an empty list to be filled with each station on the next for-loop
+  stationList <- list()
+  
+  #loop to extract each station from the cruiseData dataframe and to group the individual stations into one list for a given cruise: stationList 
+  for (ss in stations){
+    #extracting a specific station from the cruiseData dataframe
+    stationData <- cruiseData[cruiseData$Station == ss,]
+    
+    #making a station id
+    stationID <- paste('station',ss,sep = '')
+    
+    #adding the stationData to the station list, naming it with the station id
+    stationList[[stationID]] <- stationData
+  }
+
+  
+  #adding the staton list to the master cruiseList, naming it with the unique id
+  cruiseList[[id]] <- stationList
+}
+```
+
+# 2. Plotting oceanographic sections: take 2
+
+Yesterday, we plotted sections for a given cruise i.e. we plotted sections of depth vs latitude. What about a section for a given station over time?
+
+#### Example: plot a temperature section for station 1 from all the available cruise data
+
+```{r}
+cruises <- names(cruiseList)
+
+stationData <- list()
+
+for (cr in cruises){
+  stData <- cruiseList[[cr]][['station1']]
+  stationData[[cr]] <- stData
+  }
+
+#stationDataFrame <- bind_rows(stationData)
+```
+
+```{r}
+library("fields")
+```
+
+```{r}
+dates <- unique(stationDataFrame$Date)
+cruises <- names(stationData)
+
+TEM <- matrix(NA,nrow = 100, ncol = length(cruises))
+
+for (c in 1:length(cruises)){
+  for (j in 1:100){
+    stData <- stationData[[cruises[c]]]
+    
+    TEM[j,c] <- mean(stData[ceiling(stData$Depth)==j,'Temperature']) 
+  }
+}
+
+par(las=2)
+image.plot(x=1:length(cruises),y=-100:-1,t(TEM[100:1,1:length(cruises)]),
+           zlim=c(8,20),
+           col=tim.colors(24),
+           xlab='',
+           ylab='Depth (m)',
+           main='station1 : Temperature (C)',
+legend.line=2.5)
+axis(1, at = 1:length(cruises),labels=cruises)
+```
+
+
+
 *Other possible subsection: Line graphs for different stations (instead of bar charts)??*
 
 # 4 Categorical data (t-tests, bar charts, box plots, other stats?)
